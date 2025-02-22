@@ -15,6 +15,7 @@ View interactive Storybook at
 ## How to run the project
 
 - run `npm i` to install dependencies
+- change base to `/` in vite
 - run `npm run dev` and navigate to `localhost:3000`. Now you've got the website up and running
 
 ## Tech Stack
@@ -31,6 +32,7 @@ This project is built with
 
 ## How can I deploy this project?
 
+- change base back to `/inventory/` in vite
 - run `npm run build` to build the project
 - run `npm run build:dev` to deploy the project
 
