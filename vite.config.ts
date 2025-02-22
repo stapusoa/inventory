@@ -19,5 +19,11 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "src"),
     },
   },
-  base: '/inventory/',
+  build: {
+    outDir: "dist", // Ensures build output goes to "dist/"
+    rollupOptions: {
+      input: "src/main.tsx", // Ensures Vite knows your entry file
+    },
+  },
+  base: "/inventory/", // Replace with your GitHub repo name
 }));
