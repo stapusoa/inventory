@@ -4,7 +4,7 @@
 
 A modern and responsive inventory management system built with React, TypeScript, TailwindCSS, and React Router. Designed to mimic iPadOS-style UI for seamless user experience.
 
-**URL**: https://lovable.dev/projects/5df8f1fa-5671-46c9-8463-09b93eaf29cb
+**URL**: https://stapusoa.github.io/inventory/
 
 # Design system
 
@@ -32,5 +32,5 @@ This project is built with
 ## How can I deploy this project?
 
 - run `npm run build` to build the project
-- run `npm run deploy` to deploy the project
+- run `npm run build:dev` to deploy the project
 
