@@ -1,19 +1,21 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
+    "outDir": "dist", // 🔥 Ensures compiled files go to "dist/"
+    "moduleResolution": "bundler", // ✅ Required for TypeScript extension imports
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true, // ✅ Ensures TypeScript doesn't generate output
+    "allowImportingTsExtensions": true, // ✅ Allows importing .tsx files
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
-  }
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
