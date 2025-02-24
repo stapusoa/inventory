@@ -1,11 +1,11 @@
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Index from "./pages/Index";
 import PartDetails from "./pages/PartDetails";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
