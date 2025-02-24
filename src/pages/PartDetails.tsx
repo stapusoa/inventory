@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronLeft, MoreHorizontal, AlertCircle, CheckCircle2, Lock } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Sidebar from "@/components/Sidebar";
+import { Button } from "src/components/ui/button";
+import { Input } from "src/components/ui/input";
+import Sidebar from "src/components/Sidebar";
 
 interface TabProps {
   label: string;

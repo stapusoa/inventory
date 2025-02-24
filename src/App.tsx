@@ -1,9 +1,9 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import PartDetails from "./pages/PartDetails";
-import NotFound from "./pages/NotFound";
-import "./App.css";
+import Index from "src/pages/Index";
+import PartDetails from "src/pages/PartDetails";
+import NotFound from "src/pages/NotFound";
+import "src/App.css";
 
 function App() {
   return (
