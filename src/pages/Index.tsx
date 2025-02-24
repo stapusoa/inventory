@@ -1,9 +1,9 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "src/components/ui/input";
-import { Button } from "src/components/ui/button";
-import Sidebar from "src/components/Sidebar";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import Sidebar from "../components/Sidebar";
 import {
   Search,
   Plus,
