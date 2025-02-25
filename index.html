@@ -14,5 +14,10 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      if (!window.location.hash) {
+        window.location = window.location + "#/";
+      }
+    </script>
   </body>
 </html>
