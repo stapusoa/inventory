@@ -2,7 +2,7 @@
   "name": "inventory",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://inventory.saratapusoa.com",
+  "homepage": "https://stapusoa.github.io/inventory/",
   "type": "module",
   "scripts": {
     "dev": "vite",
