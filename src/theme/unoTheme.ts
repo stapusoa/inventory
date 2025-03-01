@@ -24,7 +24,7 @@ export const unoTheme: Theme = {
     'mega-wide': '.335em',
   },
   fontFamily: {
-    gilroy: '"Gilroy", sans-serif', // Provide the font family as a string, not an array
+    sfpro: '"SF Pro", sans-serif', // Provide the font family as a string, not an array
     area: '"Area Normal", sans-serif',  // Same for other fonts
   },
 }

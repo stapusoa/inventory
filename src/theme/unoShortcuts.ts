@@ -5,9 +5,11 @@ export const unoShortcuts = {
   'page-tight': 'max-w-300 mx-auto px-4 md:px-6 lg:px-8',
   'page-tighter': 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8',
   'page-full': 'max-w-full',
-  'btn-primary': 'rounded-full bg-green px-10 py-2 flex justify-center items-center decoration-none font-gilroy font-400 text-4 leading-8 text-white shadow-sm hover:bg-blue focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-melon',
-  'btn-outline': 'ring-2 ring-inset ring-green rounded-full bg-transparent px-10 py-2 flex justify-center items-center decoration-none font-gilroy font-400 text-4 leading-8 text-green hover:border-blue',
-  'link': 'flex justify-center items-center py-1.5 decoration-none font-gilroy font-700 text-6 leading-8 border-solid border-x-0 border-t-0 border-b-2 border-green text-green hover:text-blue hover:border-blue',
+  'btn-small': 'py-1.5 px-2 rounded-full',
+  'btn-medium': 'p-2 rounded-sm',
+  'btn-large': 'py-3 px-6 rounded-md',
+  'btn-primary': 'bg-blue flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-white shadow-sm hover:bg-blue/50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-blue/30',
+  'btn-secondary': 'bg-transparent flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-blue hover:bg-blue/2',
 
   'header-base-styles':
     'm-0 font-gilroy font-not-oblique font-700',

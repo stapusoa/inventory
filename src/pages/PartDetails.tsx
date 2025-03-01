@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronLeft, MoreHorizontal, AlertCircle, CheckCircle2, Lock } from "lucide-react";
-import { Button } from "../components/ui/button";
+import {Button}  from "../components/Button/button";
 import { Input } from "../components/ui/input";
 import Sidebar from "../components/Sidebar";
 
@@ -303,7 +303,7 @@ const PartDetails = () => {
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-semibold">Serial Numbers</h2>
-                  <Button variant="ghost" className="text-blue-500">
+                  <Button variant="ghost">
                     See More
                   </Button>
                 </div>
@@ -499,7 +499,7 @@ const PartDetails = () => {
           <div className="h-16 flex items-center justify-between max-w-[1600px] mx-auto px-8">
             <div className="flex items-center gap-4">
               <Link to="/">
-                <Button variant="ghost" size="icon" className="hover:bg-gray-100">
+                <Button variant="ghost">
                   <ChevronLeft className="h-5 w-5" />
                 </Button>
               </Link>
@@ -507,13 +507,12 @@ const PartDetails = () => {
             </div>
             <div className="flex items-center gap-4">
               <Button 
-                variant="ghost" 
-                className={isEditing ? "text-green-500" : "text-blue-500"}
+                variant={isEditing ? "filled" : "ghost"}
                 onClick={() => setIsEditing(!isEditing)}
               >
                 {isEditing ? "Save" : "Edit"}
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost">
                 <MoreHorizontal className="h-5 w-5" />
               </Button>
             </div>
