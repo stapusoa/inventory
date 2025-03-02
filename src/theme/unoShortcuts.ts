@@ -8,9 +8,15 @@ export const unoShortcuts = {
   'btn-small': 'py-1.5 px-2 rounded-full',
   'btn-medium': 'p-2 rounded-sm',
   'btn-large': 'py-3 px-6 rounded-md',
-  'btn-primary': 'bg-blue flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-white shadow-sm hover:bg-blue/50 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-blue/30',
-  'btn-secondary': 'bg-transparent flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-blue hover:bg-blue/2',
-
+  'btn-primary': 'bg-blue flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-white shadow-sm hover:bg-blue/50 focus:outline-3 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-blue/30 cursor-pointer',
+  'btn-secondary': 'bg-transparent flex justify-center items-center decoration-none font-sfpro font-500 text-[17px] leading-5.5 text-blue hover:bg-blue/2 cursor-pointer',
+'btn-ghost': 'bg-transparent color-blue hover:color-blue/50 flex items-center justify-center border-0 cursor-pointer',
+'select' : 'flex flex-row gap-3 items-start justify-center rounded-3 bg-transparent border-solid border-1 border-grey-100 font-sfpro font-400 text-grey-500',
+'listbox' : 'flex flex-col bg-white/90 rounded-3 shadow-2xl backdrop-blur-sm',
+'option': 'flex flex-row p-4 items-start justify-between font-sfpro text-3.75 leading-5 font-400 text-grey-500',
+'input-sm': 'px-3 py-2 text-3.75',
+'input-md': 'p-2 text-4.25 leading-5.5',
+'input-lg': 'p-3 text-4.25',
   'header-base-styles':
     'm-0 font-gilroy font-not-oblique font-700',
   'navlink': 'font-gilroy text-blue font-medium text-5 decoration-none hover:text-green',

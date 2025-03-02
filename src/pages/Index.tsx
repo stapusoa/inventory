@@ -13,6 +13,7 @@ import {
   AlertCircle,
   CheckCircle2,
 } from "lucide-react";
+import { Select } from "../components/Select/select";
 
 import { Icon } from '../components/Icon'
 
@@ -61,7 +62,8 @@ const Index = () => {
     navigate(`/part/${partNumber}`);
   };
 
-  const [selected, setSelected] = useState("Select an option");
+  const [selectedOption, setSelectedOption] = useState<string | undefined>();
+
 
 
   return (
@@ -72,7 +74,6 @@ const Index = () => {
           <div className="flex items-center gap-4 mb-3 justify-between">
             <div className="relative flex items-center justify-center w-full">
               <Input
-                className="flex flex-row items-center justify-center"
                 type="text"
                 fullWidth={true}
                 placeholder="Search"
@@ -93,7 +94,7 @@ const Index = () => {
               />
             </div>
             <div className="flex items-center justify-center">
-              <Button size="small" iconButton={true} className="bg-transparent flex items-center justify-center border-0">
+              <Button size="small" iconButton={true} className="btn-ghost">
                 <Icon name="filter" size="medium" />
               </Button>
             </div>
@@ -103,17 +104,12 @@ const Index = () => {
               <Button size="small" iconButton={true} className="flex items-center justify-center bg-transparent border-0">
                 <Icon name="sortDown" size="medium" />
               </Button>
-              <Input
-                className="flex flex-row items-center color-grey-500 justify-center"
-                type="dropdown"
-                fullWidth={false}
-                placeholder="Name"
-                value={selected}
-                inputSize="small" // ✅ Now uses `inputSize`
-                endIcon={<Icon size="small" name="chevronDown" />}
-                options={["Option 1", "Option 2", "Option 3"]}
-                onSelect={(val) => setSelected(val)}
-              />
+              <Select
+  placeholder="Choose a category"
+  options={["Option 1", "Option 2", "Option 3"]}
+  value={selectedOption}
+  onSelect={(val) => setSelectedOption(val)}
+/>
             </div>
             <Button size="medium" iconButton={false} className="btn-primary gap-2 flex items-center justify-center border-0">
               <Icon name="add" size="small" />

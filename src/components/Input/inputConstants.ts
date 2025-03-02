@@ -1,6 +1,6 @@
 type InputSize = 'small' | 'medium' | 'large'
 
-type InputType = 'text' | 'digit' | 'tel' | 'decimal' | 'email' | 'dropdown'
+type InputType = 'text' | 'digit' | 'tel' | 'decimal' | 'email'
 
 type InputVariant =
   | 'filled'

@@ -11,13 +11,15 @@ import {
   SortDownIcon,
   SortUpIcon,
   XIcon,
-  FilterIcon
+  FilterIcon,
+  CheckIcon
 } from '../icons'
 
 const IconMapping = {
   add: <AddIcon />,
  xmark: <XIcon />,
  filter: <FilterIcon />,
+ check: <CheckIcon />,
   chevronDown: <ChevronDownIcon />,
   chevronLeft: <ChevronLeftIcon />,
   chevronRight: <ChevronRightIcon />,
