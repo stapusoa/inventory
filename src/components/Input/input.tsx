@@ -17,7 +17,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       fullWidth = false,
       options = [],
       onSelect,
-      isDropdownOpen,
       onKeyDown,
       ...props
     }
@@ -41,14 +40,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           value={value}
           onChange={onChange}
           className={classNames(
-            "w-full rounded-xl border-solid border-1 border-grey-100 transition-all duration-200 outline-none text-gray-900 pl-10",
+            "w-full rounded-xl border-solid border-1 border-grey-100 transition-all duration-200 outline-none text-grey-800 pl-10",
             "focus:border-blue focus:-outline-offset-2 focus:outline-2 focus:outline-blue",
             "hover:border-blue/50",
             "disabled:opacity-50 disabled:cursor-not-allowed",
+            "placeholder-text-grey-500",
             {
-              "p-2 text-4.25 leading-5.5": inputSize === "medium",
-              "p-3 text-4.25": inputSize === "large",
-              "px-3 py-2 text-3.75": inputSize === "small",
+              "p-2 input-type-base": inputSize === "medium",
+              "p-3 input-type-base": inputSize === "large",
+              "px-3 py-2 input-type-sm": inputSize === "small",
             },
             className
           )}

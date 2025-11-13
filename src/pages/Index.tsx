@@ -1,32 +1,14 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/Button/index";
+import { Button, Input, Icon, Select, Table, TableColumn } from "../components/index";
 import Sidebar from "../components/Sidebar";
-import { Input } from "../components/Input"
 import {
-
-  Plus,
-  Download,
-  RotateCcw,
-  Trash2,
   AlertCircle,
   CheckCircle2,
 } from "lucide-react";
-import { Select } from "../components/Select/select";
 
-import { Icon } from '../components/Icon'
-
-interface InventoryItem {
-  status: "error" | "success";
-  partNumber: string;
-  description: string;
-  modified: string;
-  qty: number;
-  totalCost: number;
-}
-
-const initialInventory: InventoryItem[] = [
+const initialInventory = [
   {
     status: "error",
     partNumber: "AS100",
@@ -49,28 +31,68 @@ const initialInventory: InventoryItem[] = [
     description: "Heavy Duty Brake Cables",
     modified: "05/28/2021",
     qty: 10,
-    totalCost: 27.50,
+    totalCost: 27.5,
   },
+];
+
+// ✅ Table column definitions
+const columns: TableColumn[] = [
+  { key: "status", label: "Status", colType: "status", width: "small", align: "center" },
+  { key: "partNumber", label: "Part Number", colType: "text", width: "medium", align: "left" },
+  { key: "description", label: "Description", colType: "text", width: "large", align: "left" },
+  { key: "modified", label: "Modified", colType: "date", width: "medium", align: "left" },
+  { key: "qty", label: "QTY", colType: "qty", width: "small", align: "right" },
+  { key: "totalCost", label: "Total Cost", colType: "currency", width: "medium", align: "right" },
 ];
 
 const Index = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedColumn, setSelectedColumn] = useState<string>("All");
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-
-  const handleRowClick = (partNumber: string) => {
-    navigate(`/part/${partNumber}`);
+  const handleRowClick = (row: any) => {
+    navigate(`/part/${row.partNumber}`);
   };
 
-  const [selectedOption, setSelectedOption] = useState<string | undefined>();
+  // ✅ Filter Data by Search Query and Selected Column
+  const filteredData = initialInventory.filter((item) => {
+    if (!searchQuery) return true;
+    if (selectedColumn === "All") {
+      return Object.values(item).some((value) =>
+        value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    return (
+      item[selectedColumn as keyof typeof item]
+        ?.toString()
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ?? false
+    );
+  });
 
+  // ✅ Sort Data by Selected Column
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (!sortColumn) return 0;
+    const valueA = a[sortColumn as keyof typeof a];
+    const valueB = b[sortColumn as keyof typeof b];
 
+    if (typeof valueA === "number" && typeof valueB === "number") {
+      return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
+    } else {
+      return sortOrder === "asc"
+        ? valueA.toString().localeCompare(valueB.toString())
+        : valueB.toString().localeCompare(valueA.toString());
+    }
+  });
 
   return (
     <div className="min-h-screen bg-white">
       <Sidebar />
       <div className="transition-all duration-300 ml-20 lg:ml-64">
         <main className="p-8">
+          {/* 🔹 Search and Filter Row */}
           <div className="flex items-center gap-4 mb-3 justify-between">
             <div className="relative flex items-center justify-center w-full">
               <Input
@@ -79,14 +101,16 @@ const Index = () => {
                 placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                inputSize="medium" // ✅ Now uses `inputSize`
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") console.log("Searching for:", searchQuery);
-                }}
+                inputSize="medium"
                 startIcon={<Icon size="small" name="search" />}
                 endIcon={
                   searchQuery && (
-                    <Button size="small" iconButton={true} className="flex bg-transparent border-0 items-center justify-center bg-transparent border-0" onClick={() => setSearchQuery("")}>
+                    <Button
+                      size="small"
+                      iconButton={true}
+                      className="bg-transparent border-0"
+                      onClick={() => setSearchQuery("")}
+                    >
                       <Icon size="small" name="xmark" />
                     </Button>
                   )
@@ -99,74 +123,45 @@ const Index = () => {
               </Button>
             </div>
           </div>
+
+          {/* 🔹 Sort and Column Filter */}
           <div className="mb-4 mt-1 flex items-center justify-between">
-            <div className="flex items-center gap-3 justify-center">
-              <Button size="small" iconButton={true} className="flex items-center justify-center bg-transparent border-0">
-                <Icon name="sortDown" size="medium" />
+            <div className="flex items-center gap-3">
+              {/* Sort Button */}
+              <Button
+                size="small"
+                iconButton={true}
+                className="bg-transparent color-grey-400 border-0 flex items-center justify-center"
+                onClick={() => {
+                  setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+                }}
+              >
+                {sortOrder === "asc" ? <Icon name="sortUp" size="medium" /> : <Icon name="sortDown" size="medium" />}
               </Button>
+
+              {/* Column Selector */}
               <Select
-  placeholder="Choose a category"
-  options={["Option 1", "Option 2", "Option 3"]}
-  value={selectedOption}
-  onSelect={(val) => setSelectedOption(val)}
-/>
+                placeholder="Filter by Column"
+                options={["All", ...columns.map((col) => col.key)]}
+                value={selectedColumn}
+                size="small"
+                onSelect={(val) => setSelectedColumn(val)}
+              />
             </div>
-            <Button size="medium" iconButton={false} className="btn-primary gap-2 flex items-center justify-center border-0">
+            <Button size="medium" iconButton={false} className="btn-primary">
               <Icon name="add" size="small" />
               Button
             </Button>
           </div>
 
-          <div className="bg-white rounded-lg border overflow-x-auto">
-            <table className="w-full border-collapse table-fixed font-sfpro">
-              <thead className="border-1 border-t-solid border-grey-50">
-                <tr className="pt-4 text-3 leading-4 uppercase text-grey-400">
-                  <th className="pl-0 pr-2 pb-4 pt-4 w-1/16 text-center font-400 tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-0 pb-4 pt-4 w-3/16 text-left font-400 tracking-wider">
-                    Part Number
-                  </th>
-                  <th className="px-0 pb-4 pt-4 w-6/16 text-left font-400 tracking-wider">
-                    Description
-                  </th>
-                  <th className="px-0 pb-4 pt-4 w-2/16 text-left font-400 tracking-wider">
-                    Modified
-                  </th>
-                  <th className="px-0 pb-4 pt-4 w-2/16 text-left font-400 tracking-wider">
-                    QTY
-                  </th>
-                  <th className="px-0 pb-4 pt-4 w-2/16 text-left font-400 tracking-wider">
-                    Total Cost
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {initialInventory.map((item) => (
-                  <tr
-                    key={item.partNumber}
-                    className="hover:bg-gray-50 pl-2.5 font-400 leading-6 transition-colors cursor-pointer"
-                    onClick={() => handleRowClick(item.partNumber)}
-                  >
-                    <td className="w-1/16 pl-0 pr-2 py-4 text-center text-grey-600 text-4.25">
-                      {item.status === "error" ? (
-                        <AlertCircle className="h-5 w-5 text-red-500" />
-                      ) : (
-                        <CheckCircle2 className="h-5 w-5 text-green-500" />
-                      )}
-                    </td>
-                    <td className="w-3/16 px-0 py-4 text-left text-grey-800 text-5">{item.partNumber}</td>
-                    <td className="w-6/16 px-0 py-4 text-left text-grey-600 text-4.25">{item.description}</td>
-                    <td className="w-2/16 px-0 py-4 text-left text-grey-600 text-4.25">{item.modified}</td>
-                    <td className="w-2/16 px-0 py-4 text-left text-grey-600 text-4.25">{item.qty}</td>
-                    <td className="w-2/16 px-0 py-4 text-left text-grey-600 text-4.25">
-                      ${item.totalCost.toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {/* 🔹 Table Component */}
+          <Table
+            columns={columns}
+            data={sortedData}
+            onRowClick={handleRowClick}
+            fullWidth={true}
+            variant="expanded"
+          />
         </main>
       </div>
     </div>
@@ -174,5 +169,3 @@ const Index = () => {
 };
 
 export default Index;
-
-
